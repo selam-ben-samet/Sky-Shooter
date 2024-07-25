@@ -9,6 +9,8 @@ TagManager:
   - Viper
   - Ravager
   - SkillUP
+  - bullet
+  - asteroid
   layers:
   - Default
   - TransparentFX
