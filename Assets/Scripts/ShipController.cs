@@ -21,7 +21,7 @@ public class ShipController : MonoBehaviour
     private float lastRegenTime;
     public GameObject shipBody;
     public GameObject shipGun;
-
+    public GameObject deathScreen;
     private Vector3 targetPosition; // Geminin hedef pozisyonu
     private bool isDragging = false;
 
@@ -29,6 +29,7 @@ public class ShipController : MonoBehaviour
 
     void Start()
     {
+
         setUpShip(shipBody.tag);
         // Başlangıçta hedef pozisyonu geminin mevcut pozisyonu olarak ayarla
         targetPosition = transform.position;
@@ -40,7 +41,13 @@ public class ShipController : MonoBehaviour
         Fire();
         RegenHealth(1f);
     }
+    void Die()
+    {
 
+        Time.timeScale = 0;
+        deathScreen.GetComponent<DeathScreenController>().showDeathScreen(); ;
+
+    }
     void MoveShip()
     {
         // Sadece gemi hareket edebilirken dokunma ve sürükleme işlemlerini kontrol et
@@ -148,7 +155,12 @@ public class ShipController : MonoBehaviour
     public void DecreaseHealth(int value)
     {
         health -= value - (value * (resistance / 100)) * 5;
+        if (health <= 0)
+        {
+            Die();
+        }
     }
+
     public void RegenHealth(float perSec)
     {
         if (health < maxHealth)
