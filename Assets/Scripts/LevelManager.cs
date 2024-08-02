@@ -27,7 +27,7 @@ public class LevelManager : MonoBehaviour
     }
     void FixedUpdate()
     {
-        IncreaseExp();
+
         UpdateValues();
         if (currentExp > requiredExp)
         {
@@ -55,13 +55,9 @@ public class LevelManager : MonoBehaviour
         lvl.text = level.ToString();
 
     }
-    void IncreaseExp()
+    public void IncreaseExp(int value)
     {
-        if (Time.time - lastIncTime >= 2)
-        {
-            currentExp += 100;
-            lastIncTime = Time.time;
-        }
+        currentExp += value;
     }
     void showSkillUp()
     {
@@ -70,5 +66,9 @@ public class LevelManager : MonoBehaviour
     void hideSkillUp()
     {
         skillUpPanel.SetActive(false);
+    }
+    public int GetLevel()
+    {
+        return level;
     }
 }

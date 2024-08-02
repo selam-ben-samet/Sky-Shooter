@@ -11,9 +11,10 @@ public class Asteroid : MonoBehaviour
     public int asteroidType;
     public float attackDamage;
     public GameObject ship;
+    public LevelManager levelManager;
     void Start()
     {
-
+        levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
         health = asteroidType * 100;
     }
     void Update()
@@ -32,9 +33,10 @@ public class Asteroid : MonoBehaviour
         {
             Destroy(col.gameObject);
             health -= attackDamage;
-            if (health == 0)
+            if (health <= 0)
             {
                 Destroy(gameObject);
+                levelManager.IncreaseExp(asteroidType * 2);
             }
         }
     }
