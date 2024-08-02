@@ -9,6 +9,7 @@ public class Asteroid : MonoBehaviour
     public float rotationSpeed = 10f; // Dönme hızı
     public float health;
     public int asteroidType;
+    public int crashDamage;
     public float attackDamage;
     public GameObject ship;
     public LevelManager levelManager;

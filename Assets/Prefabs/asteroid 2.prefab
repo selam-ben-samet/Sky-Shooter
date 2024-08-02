@@ -153,3 +153,7 @@ MonoBehaviour:
   rotationSpeed: 10
   health: 100
   asteroidType: 3
+  crashDamage: 60
+  attackDamage: 0
+  ship: {fileID: 0}
+  levelManager: {fileID: 0}

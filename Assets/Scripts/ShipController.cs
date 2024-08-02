@@ -1,4 +1,6 @@
 using System;
+using System.Globalization;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShipController : MonoBehaviour
@@ -10,12 +12,13 @@ public class ShipController : MonoBehaviour
     #endregion
     #region Attributes
     public float health;
+    public float maxHealth;
     public float healthRegen;
     public float resistance;
     public float attackSpeed;
     public float attackDamage;
     #endregion
-
+    private float lastRegenTime;
     public GameObject shipBody;
     public GameObject shipGun;
 
@@ -35,6 +38,7 @@ public class ShipController : MonoBehaviour
     {
         MoveShip();
         Fire();
+        RegenHealth(1f);
     }
 
     void MoveShip()
@@ -85,6 +89,7 @@ public class ShipController : MonoBehaviour
         {
             case "Tyrant":
                 health = 135f;
+                maxHealth = 135f;
                 healthRegen = 0.7f;
                 resistance = 12f;
                 attackSpeed = 0.4f;
@@ -92,6 +97,7 @@ public class ShipController : MonoBehaviour
                 break;
             case "Viper":
                 health = 90f;
+                maxHealth = 90f;
                 healthRegen = 0.5f;
                 resistance = 9f;
                 attackSpeed = 1.2f;
@@ -99,6 +105,7 @@ public class ShipController : MonoBehaviour
                 break;
             case "Ravager":
                 health = 112f;
+                maxHealth = 112f;
                 healthRegen = 0.6f;
                 resistance = 10f;
                 attackSpeed = 0.8f;
@@ -138,4 +145,22 @@ public class ShipController : MonoBehaviour
     {
         canMove = value;
     }
+    public void DecreaseHealth(int value)
+    {
+        health -= value - (value * (resistance / 100)) * 5;
+    }
+    public void RegenHealth(float perSec)
+    {
+        if (health < maxHealth)
+        {
+            if (Time.time - lastRegenTime >= perSec)
+            {
+                health += healthRegen;
+                lastRegenTime = Time.time;
+            }
+
+        }
+
+    }
+
 }
