@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class LevelManager : MonoBehaviour
 {
 
-    private int currentExp = 0;
+    public int currentExp = 0;
     private int level = 1;
     private int requiredExp;
 
