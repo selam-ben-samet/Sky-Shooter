@@ -26,7 +26,7 @@ public class ShipController : MonoBehaviour
     private bool isDragging = false;
 
     private bool canMove = true; // Geminin hareket edip edemeyeceğini kontrol eden bayrak
-    public AudioManager audioManager;
+
     void Start()
     {
         setUpShip(shipBody.tag);
@@ -45,7 +45,7 @@ public class ShipController : MonoBehaviour
 
         Time.timeScale = 0;
         deathScreen.GetComponent<DeathScreenController>().showDeathScreen();
-        audioManager.PlayAudioClip("playerDeath");
+
 
     }
     void MoveShip()
@@ -83,7 +83,7 @@ public class ShipController : MonoBehaviour
     {
         if (Time.time - lastFireTime >= (3f / (attackSpeed * 10)))
         {
-            audioManager.PlayAudioClip("shooting");
+
             var bulletClone = Instantiate(bulletPB, shipGun.transform.position + Vector3.up, shipGun.transform.rotation);
             bulletClone.GetComponent<Rigidbody2D>().velocity = Vector2.up * bulletSpeed;
             lastFireTime = Time.time;
@@ -126,7 +126,7 @@ public class ShipController : MonoBehaviour
 
     public void skillUP(String skill)
     {
-        audioManager.PlayAudioClip("levelUp");
+
         switch (skill)
         {
             case "up_h":
@@ -156,7 +156,7 @@ public class ShipController : MonoBehaviour
     }
     public void DecreaseHealth(int value)
     {
-        audioManager.PlayAudioClip("playerHit");
+
         health -= value - (value * (resistance / 100)) * 5;
         if (health <= 0)
         {
