@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class DeathScreenController : MonoBehaviour
 {
-    public GameObject deathScreen;
+
     public GameObject ship;
     // Start is called before the first frame update
     void Start()
     {
-        hideDeathScreen();
+
     }
 
     // Update is called once per frame
@@ -19,12 +19,13 @@ public class DeathScreenController : MonoBehaviour
     }
     public void showDeathScreen()
     {
-        deathScreen.SetActive(true);
+        gameObject.SetActive(true);
+        Debug.Log("workss");
 
     }
     public void hideDeathScreen()
     {
-        deathScreen.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     public void Continue()

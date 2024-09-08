@@ -11,6 +11,7 @@ public class ShipController : MonoBehaviour
     private float lastFireTime;
     #endregion
     #region Attributes
+
     public float health;
     public float maxHealth;
     public float healthRegen;
@@ -29,7 +30,7 @@ public class ShipController : MonoBehaviour
 
     void Start()
     {
-        setUpShip(shipBody.tag);
+        setUpShip("Viper");
         // Başlangıçta hedef pozisyonu geminin mevcut pozisyonu olarak ayarla
         targetPosition = transform.position;
     }
@@ -42,9 +43,9 @@ public class ShipController : MonoBehaviour
     }
     void Die()
     {
-
+        deathScreen.SetActive(true);
         Time.timeScale = 0;
-        deathScreen.GetComponent<DeathScreenController>().showDeathScreen();
+
 
 
     }
@@ -93,9 +94,13 @@ public class ShipController : MonoBehaviour
 
     public void setUpShip(String tag)
     {
+
+        shipBody = GameObject.FindGameObjectWithTag(tag);
+        Instantiate(shipBody, this.transform);
         switch (tag)
         {
             case "Tyrant":
+
                 health = 135f;
                 maxHealth = 135f;
                 healthRegen = 0.7f;
@@ -104,6 +109,7 @@ public class ShipController : MonoBehaviour
                 attackDamage = 27f;
                 break;
             case "Viper":
+
                 health = 90f;
                 maxHealth = 90f;
                 healthRegen = 0.5f;
@@ -112,6 +118,7 @@ public class ShipController : MonoBehaviour
                 attackDamage = 24f;
                 break;
             case "Ravager":
+
                 health = 112f;
                 maxHealth = 112f;
                 healthRegen = 0.6f;
