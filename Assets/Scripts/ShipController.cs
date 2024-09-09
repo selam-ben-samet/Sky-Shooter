@@ -30,7 +30,7 @@ public class ShipController : MonoBehaviour
 
     void Start()
     {
-        setUpShip("Viper");
+        setUpShip("Ravager");
         // Başlangıçta hedef pozisyonu geminin mevcut pozisyonu olarak ayarla
         targetPosition = transform.position;
     }
