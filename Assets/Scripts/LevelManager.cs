@@ -17,6 +17,16 @@ public class LevelManager : MonoBehaviour
     public Image healthOrb;
     float shipHealth;
     float shipMaxHealth;
+    float shipHealthRegen;
+    float shipResistance;
+    float shipAttackSpeed;
+    float shipAttackDamage;
+
+    public TextMeshProUGUI UIshipMaxHealth;
+    public TextMeshProUGUI UIshipHealthRegen;
+    public TextMeshProUGUI UIshipResistance;
+    public TextMeshProUGUI UIshipAttackSpeed;
+    public TextMeshProUGUI UIshipAttackDamage;
     public Image experienceOrb;
 
 
@@ -26,10 +36,12 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
+
         ship = GameObject.Find("Ship");
         hideSkillUp();
         healthOrb.fillAmount = 1;
         experienceOrb.fillAmount = 0;
+        UpdateStats();
     }
     void Update()
     {
@@ -63,20 +75,35 @@ public class LevelManager : MonoBehaviour
 
         // health
         shipHealth = ship.GetComponent<ShipController>().health;
-        shipMaxHealth = ship.GetComponent<ShipController>().maxHealth;
+
         healthOrb.fillAmount = shipHealth / shipMaxHealth;
 
         // experience
 
 
-        Debug.Log("currentexp" + currentExp + "\n" + "requiredexp" + requiredExp);
+
 
         experienceOrb.fillAmount = currentExp / requiredExp;
-        Debug.Log("experience icin sonuc: " + (currentExp / requiredExp));
 
 
 
 
+
+
+    }
+    public void UpdateStats()
+    {
+        shipMaxHealth = ship.GetComponent<ShipController>().maxHealth;
+        shipHealthRegen = ship.GetComponent<ShipController>().healthRegen;
+        shipResistance = ship.GetComponent<ShipController>().resistance;
+        shipAttackSpeed = ship.GetComponent<ShipController>().attackSpeed;
+        shipAttackDamage = ship.GetComponent<ShipController>().attackDamage;
+
+        UIshipMaxHealth.text = shipMaxHealth.ToString();
+        UIshipHealthRegen.text = shipHealthRegen.ToString();
+        UIshipResistance.text = shipResistance.ToString();
+        UIshipAttackSpeed.text = shipAttackSpeed.ToString();
+        UIshipAttackDamage.text = shipAttackDamage.ToString();
     }
     public void IncreaseExp(int value)
     {

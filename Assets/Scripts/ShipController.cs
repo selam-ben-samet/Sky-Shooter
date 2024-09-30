@@ -28,7 +28,7 @@ public class ShipController : MonoBehaviour
 
     private bool canMove = true; // Geminin hareket edip edemeyeceğini kontrol eden bayrak
 
-    void Start()
+    void Awake()
     {
         setUpShip("Viper");
         // Başlangıçta hedef pozisyonu geminin mevcut pozisyonu olarak ayarla
@@ -155,6 +155,7 @@ public class ShipController : MonoBehaviour
                 break;
         }
         GameObject.FindGameObjectWithTag("UpgradePanel").SetActive(false);
+        GameObject.Find("LevelManager").GetComponent<LevelManager>().UpdateStats();
         Time.timeScale = 1;
     }
 
