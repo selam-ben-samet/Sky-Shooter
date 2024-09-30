@@ -20,7 +20,7 @@ public class LevelManager : MonoBehaviour
     public Image experienceOrb;
 
 
-    public GameObject skillUpPanel;
+    public GameObject UpgradePanel;
     private float lastIncTime;
 
 
@@ -84,11 +84,13 @@ public class LevelManager : MonoBehaviour
     }
     void showSkillUp()
     {
-        skillUpPanel.SetActive(true);
+        Time.timeScale = 0;
+        UpgradePanel.SetActive(true);
     }
     void hideSkillUp()
     {
-        skillUpPanel.SetActive(false);
+
+        UpgradePanel.SetActive(false);
     }
     public int GetLevel()
     {

@@ -30,7 +30,7 @@ public class ShipController : MonoBehaviour
 
     void Start()
     {
-        setUpShip("Ravager");
+        setUpShip("Viper");
         // Başlangıçta hedef pozisyonu geminin mevcut pozisyonu olarak ayarla
         targetPosition = transform.position;
     }
@@ -154,7 +154,8 @@ public class ShipController : MonoBehaviour
             default:
                 break;
         }
-        GameObject.FindGameObjectWithTag("SkillUP").SetActive(false);
+        GameObject.FindGameObjectWithTag("UpgradePanel").SetActive(false);
+        Time.timeScale = 1;
     }
 
     public void SetCanMove(bool value)
