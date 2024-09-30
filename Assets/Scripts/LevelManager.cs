@@ -9,13 +9,16 @@ using UnityEngine.UI;
 public class LevelManager : MonoBehaviour
 {
 
-    public int currentExp = 0;
+    public float currentExp = 0;
     private int level = 1;
-    private int requiredExp;
+    private float requiredExp;
 
-    public TextMeshProUGUI r_exp;
-    public TextMeshProUGUI c_exp;
-    public TextMeshProUGUI lvl;
+    private GameObject ship;
+    public Image healthOrb;
+    float shipHealth;
+    float shipMaxHealth;
+    public Image experienceOrb;
+
 
     public GameObject skillUpPanel;
     private float lastIncTime;
@@ -23,12 +26,19 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
+        ship = GameObject.Find("Ship");
         hideSkillUp();
+        healthOrb.fillAmount = 1;
+        experienceOrb.fillAmount = 0;
+    }
+    void Update()
+    {
+        UpdatePanel();
     }
     void FixedUpdate()
     {
 
-        UpdateValues();
+
         if (currentExp > requiredExp)
         {
             CheckLevelUp();
@@ -48,11 +58,24 @@ public class LevelManager : MonoBehaviour
 
 
     }
-    void UpdateValues()
+    void UpdatePanel()
     {
-        r_exp.text = requiredExp.ToString();
-        c_exp.text = currentExp.ToString();
-        lvl.text = level.ToString();
+
+        // health
+        shipHealth = ship.GetComponent<ShipController>().health;
+        shipMaxHealth = ship.GetComponent<ShipController>().maxHealth;
+        healthOrb.fillAmount = shipHealth / shipMaxHealth;
+
+        // experience
+
+
+        Debug.Log("currentexp" + currentExp + "\n" + "requiredexp" + requiredExp);
+
+        experienceOrb.fillAmount = currentExp / requiredExp;
+        Debug.Log("experience icin sonuc: " + (currentExp / requiredExp));
+
+
+
 
     }
     public void IncreaseExp(int value)
