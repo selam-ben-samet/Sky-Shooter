@@ -30,10 +30,13 @@ public class ShipController : MonoBehaviour
 
     void Awake()
     {
-        setUpShip("Viper");
-        // Başlangıçta hedef pozisyonu geminin mevcut pozisyonu olarak ayarla
+        string selectedShip = PlayerPrefs.GetString("SelectedShip", "Viper"); // Default to "Viper" if no selection was made
+        setUpShip(selectedShip);
+
+        // Start with the target position as the current position
         targetPosition = transform.position;
     }
+
 
     void Update()
     {
