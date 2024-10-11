@@ -7,9 +7,6 @@ using UnityEngine.UI;
 
 public class pauseScript : MonoBehaviour
 {
-    public Image pauseButton;
-
-
 
     void Start()
     {

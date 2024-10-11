@@ -35,6 +35,7 @@ public class ShipController : MonoBehaviour
 
         // Start with the target position as the current position
         targetPosition = transform.position;
+        Time.timeScale = 1;
     }
 
 

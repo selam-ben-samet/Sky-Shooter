@@ -8,7 +8,7 @@ public class AsteroidSpawner : MonoBehaviour
     public float spawnRate = 0.1f; // Spawn rate in seconds
     public float spawnRadius = 10f; // Radius around the spawner where asteroids can appear
     public float minDistance = 0.1f; // Minimum distance between asteroids
-    public GameObject levelManager;
+    private GameObject levelManager;
     private int level;
     private List<GameObject> spawnedAsteroids = new List<GameObject>(); // List to keep track of spawned asteroids
 
