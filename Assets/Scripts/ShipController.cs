@@ -27,7 +27,7 @@ public class ShipController : MonoBehaviour
     private bool isDragging = false;
 
     private bool canMove = true; // Geminin hareket edip edemeyeceğini kontrol eden bayrak
-
+    public SoundController soundController;
     void Awake()
     {
         string selectedShip = PlayerPrefs.GetString("SelectedShip", "Viper"); // Default to "Viper" if no selection was made
@@ -36,6 +36,7 @@ public class ShipController : MonoBehaviour
         // Start with the target position as the current position
         targetPosition = transform.position;
         Time.timeScale = 1;
+
     }
 
 
@@ -88,7 +89,7 @@ public class ShipController : MonoBehaviour
     {
         if (Time.time - lastFireTime >= (3f / (attackSpeed * 10)))
         {
-
+            soundController.ShootSound();
             var bulletClone = Instantiate(bulletPB, shipGun.transform.position + Vector3.up, shipGun.transform.rotation);
             bulletClone.GetComponent<Rigidbody2D>().velocity = Vector2.up * bulletSpeed;
             lastFireTime = Time.time;
@@ -174,6 +175,10 @@ public class ShipController : MonoBehaviour
         if (health <= 0)
         {
             Die();
+        }
+        else
+        {
+            soundController.AlarmSound();
         }
     }
 

@@ -9,6 +9,7 @@ public class ButtonController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     {
         // Butona tıklandığında geminin hareketini durdurur
         shipController.SetCanMove(false);
+        shipController.soundController.ClickSound();
     }
 
     public void OnPointerUp(PointerEventData eventData)

@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class pauseScript : MonoBehaviour
 {
+    public AudioSource Music;
+    public AudioSource SFX;
     private bool isGamePaused = false;
     void Start()
     {
@@ -28,6 +30,17 @@ public class pauseScript : MonoBehaviour
         Time.timeScale = 1;
         gameObject.SetActive(false);
         isGamePaused = false;
+    }
+
+    public void Music_ON_OFF()
+    {
+        if (Music.volume > 0) Music.volume = 0;
+        else Music.volume = 1;
+    }
+    public void SFX_ON_OFF()
+    {
+        if (SFX.volume > 0) SFX.volume = 0;
+        else SFX.volume = 1;
     }
     public void quitTheGame()
     {
