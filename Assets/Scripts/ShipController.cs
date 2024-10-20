@@ -142,16 +142,16 @@ public class ShipController : MonoBehaviour
         switch (skill)
         {
             case "up_h":
-                health += 100;
+                maxHealth += 50;
                 break;
             case "up_hr":
-                healthRegen += 0.5f;
+                healthRegen += 0.3f;
                 break;
             case "up_r":
-                resistance += 1f;
+                resistance += 4f;
                 break;
             case "up_as":
-                attackSpeed += 1f;
+                attackSpeed += 0.2f;
                 break;
             case "up_ad":
                 attackDamage += 5f;
@@ -171,7 +171,8 @@ public class ShipController : MonoBehaviour
     public void DecreaseHealth(int value)
     {
 
-        health -= value - (value * (resistance / 100)) * 5;
+        health -= value * (1 - (resistance / 100));
+
         if (health <= 0)
         {
             Die();
